@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Самому ценному</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: linear-gradient(to right, #ffe0f0, #e0f7ff);
+      color: #333;
+      text-align: center;
+      padding: 2em;
+      margin: 0;
+    }
+    h1 {
+      font-size: 3em;
+      margin-bottom: 0.2em;
+    }
+    .counter {
+      font-size: 1.2em;
+      margin-bottom: 1.5em;
+      color: #555;
+    }
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 2em;
+      margin: 1em auto;
+      max-width: 600px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    .video iframe {
+      width: 100%;
+      height: 315px;
+      border-radius: 15px;
+    }
+    .footer {
+      margin-top: 2em;
+      font-style: italic;
+      color: #777;
+      font-size: 0.8em;
+    }
+    .secret-button {
+      margin-top: 1.5em;
+      padding: 10px 20px;
+      background: #ffccda;
+      border: none;
+      border-radius: 10px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .secret-button:hover {
+      background: #ffc0cb;
+    }
+  </style>
+</head>
+<body>
+  <h1>Самому ценному</h1>
+  <div class="counter" id="loveDays"></div>
+  <div class="card">
+    <h2 id="compliment"></h2>
+    <p id="wish"></p>
+  </div>
+  <div class="card video">
+    <h3>Твоё видео на сегодня:</h3>
+    <div id="video"></div>
+  </div>
+
+  <button class="secret-button" onclick="alert('Знаешь, в чём секрет? Я тебя люблю ещё сильнее, чем вчера!')">
+    Жми, если скучаешь
+  </button>
+
+  <div class="footer">
+    я всё ещё люблю тебя
+  </div>
+
+  <script>
+    const startDate = new Date('2024-11-02');
+    const today = new Date();
+    const diffTime = today - startDate;
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    document.getElementById('loveDays').innerText = `Мы любим друг друга уже ${diffDays} день(дней)!`;
+
+    const data = {
+      compliments: [
+        "Ты — мой Wi-Fi в мире без сигнала!",
+        "Ты лучше любого кофе — и бодришь, и греешь!",
+        "Твоя улыбка спасает мир чаще, чем Бэтмен!",
+        "Ты мой герой, только без плаща. И в пижаме.",
+        "Ты как понедельник, только приятный."
+      ],
+      wishes: [
+        "Пусть день будет таким же классным, как ты, но это сложно!",
+        "Если будет грустно — вспомни меня и прими обнимашку онлайн!",
+        "Сегодня — день побеждать! А если не получится — просто поешь вкусненького!",
+        "Улыбайся чаще, это мой любимый аксессуар на тебе.",
+        "Ты достоин лучшего, поэтому вот — сайт от богини любви!"
+      ],
+      videos: [
+        "https://www.youtube.com/embed/tgbNymZ7vqY",
+        "https://www.youtube.com/embed/6Dh-RL__uN4",
+        "https://www.youtube.com/embed/J---aiyznGQ",
+        "https://www.youtube.com/embed/ZZ5LpwO-An4",
+        "https://www.youtube.com/embed/d-diB65scQU"
+      ]
+    };
+
+    function getRandomItem(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    document.getElementById('compliment').innerText = getRandomItem(data.compliments);
+    document.getElementById('wish').innerText = getRandomItem(data.wishes);
+    document.getElementById('video').innerHTML = `<iframe src="${getRandomItem(data.videos)}" frameborder="0" allowfullscreen></iframe>`;
+  </script>
+</body>
+</html>
